@@ -11,7 +11,7 @@ class Player:
     def find_musics(self, dirpath: str) -> list:
         def filter_music(filename: str) -> Union[str, None]:
             if filename.endswith('.mp3') or filename.endswith('.mp4a'):
-                return filename
+                return os.path.join(dirpath, filename)
 
         if os.path.isdir(dirpath):
             musics: list = os.listdir(dirpath)
