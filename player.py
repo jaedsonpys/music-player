@@ -16,3 +16,10 @@ class Player:
         if os.path.isdir(dirpath):
             musics: list = os.listdir(dirpath)
             filter(filter_music, musics)
+
+    def play(self, filepath: str):
+        self.mixer.music.load(filepath)
+        self.mixer.music.play()
+
+    def pause(self):
+        self.mixer.music.pause()
