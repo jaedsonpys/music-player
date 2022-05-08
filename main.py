@@ -4,6 +4,8 @@ from player import Player
 
 class Root:
     def __init__(self, window: Tk):
+        self.selected_music = None
+
         self.window = window
         self.player = Player()
 
@@ -12,6 +14,7 @@ class Root:
         self.window.resizable(0, 0)
 
         self.list_musics()
+        self.wait_selected_music()
 
     def list_musics(self):
         # Label(self.window, text='Musics:').grid(row=0, column=1, pady=10, padx=10)
@@ -23,6 +26,14 @@ class Root:
             self.musics_list.insert(e + 1, m)
 
         self.musics_list.pack(side='top', expand=True, fill=BOTH, ipady=5, ipadx=5)
+
+    def wait_selected_music(self):
+        selected = self.musics_list.curselection()
+
+        if selected and selected[0] != self.selected_music:
+            self.selected_music = selected[0]
+        
+        self.window.after(255, self.wait_selected_music)
 
 
 window = Tk()
