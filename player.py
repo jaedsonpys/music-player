@@ -15,7 +15,9 @@ class Player:
 
         if os.path.isdir(dirpath):
             musics: list = os.listdir(dirpath)
-            filter(filter_music, musics)
+            musics = filter(filter_music, musics)
+
+            return musics
 
     def play(self, filepath: str):
         self.mixer.music.load(filepath)
