@@ -8,3 +8,8 @@ class Root:
         self.window.geometry('400x400')
         self.window.title('PyPlayer')
         self.window.resizable(0, 0)
+
+
+window = Tk()
+Root(window)
+window.mainloop()
