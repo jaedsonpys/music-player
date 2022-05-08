@@ -23,3 +23,6 @@ class Player:
 
     def pause(self):
         self.mixer.music.pause()
+
+    def unpause(self):
+        self.mixer.music.unpause()
