@@ -15,9 +15,9 @@ class Root:
 
         self.list_musics()
 
-        Button(self.window, text='previous', command=self.previous_music).pack(side=LEFT)
-        self.pause_button = Button(self.window, text='pause', command=self.pause_play_music).pack(side=LEFT)
-        Button(self.window, text='next', command=self.next_music).pack(side=LEFT)
+        Button(self.window, text='previous', command=lambda: self.player.previous_music(self.selected_music)).pack(side=LEFT)
+        self.pause_button = Button(self.window, text='pause', command=self.player.pause).pack(side=LEFT)
+        Button(self.window, text='next', command=lambda: self.player.next_music(self.selected_music)).pack(side=LEFT)
 
         self.wait_selected_music()
 
@@ -25,9 +25,9 @@ class Root:
         # Label(self.window, text='Musics:').grid(row=0, column=1, pady=10, padx=10)
         
         self.musics_list = Listbox(self.window)
-        musics = self.player.find_musics('/home/jaedsonpys/Música')
+        self.musics = self.player.find_musics('/home/jaedsonpys/Música')
 
-        for e, m in enumerate(musics):
+        for e, m in enumerate(self.musics):
             self.musics_list.insert(e + 1, m)
 
         self.musics_list.pack(side='top', expand=True, fill=BOTH, ipady=5, ipadx=5)
@@ -35,9 +35,11 @@ class Root:
     def wait_selected_music(self):
         selected = self.musics_list.curselection()
 
-        if selected and selected[0] != self.selected_music:
-            self.selected_music = selected[0]
-        
+        if selected:
+            if selected[0] != self.selected_music:
+                self.selected_music = selected[0]
+                self.player.play(self.musics[selected[0]])
+
         self.window.after(255, self.wait_selected_music)
 
 
