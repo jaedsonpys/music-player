@@ -25,9 +25,9 @@ class Root:
         # Label(self.window, text='Musics:').grid(row=0, column=1, pady=10, padx=10)
         
         self.musics_list = Listbox(self.window)
-        self.musics = self.player.find_musics('/home/jaedsonpys/Música')
+        musics = self.player.find_musics('/home/jaedsonpys/Música')
 
-        for e, m in enumerate(self.musics):
+        for e, m in enumerate(musics):
             self.musics_list.insert(e + 1, m)
 
         self.musics_list.pack(side='top', expand=True, fill=BOTH, ipady=5, ipadx=5)
