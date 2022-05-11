@@ -8,6 +8,8 @@ class Player:
         self.mixer = mixer
         self.mixer.init()
 
+        self.musics = []
+
     def find_musics(self, dirpath: str) -> list:
         def filter_music_files(filename: str) -> Union[str, None]:
             if filename.endswith('.mp3') or filename.endswith('.mp4a'):
@@ -15,9 +17,9 @@ class Player:
 
         if os.path.isdir(dirpath):
             files: list = os.listdir(dirpath)
-            musics = list(map(filter_music_files, files))
+            self.musics = list(map(filter_music_files, files))
 
-            return musics
+            return self.musics
 
     def play(self, filepath: str):
         self.mixer.music.load(filepath)
