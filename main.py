@@ -14,6 +14,11 @@ class Root:
         self.window.resizable(0, 0)
 
         self.list_musics()
+
+        Button(self.window, text='previous', command=self.previous_music).pack(side=LEFT)
+        self.pause_button = Button(self.window, text='pause', command=self.pause_play_music).pack(side=LEFT)
+        Button(self.window, text='next', command=self.next_music).pack(side=LEFT)
+
         self.wait_selected_music()
 
     def list_musics(self):
