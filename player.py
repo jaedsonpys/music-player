@@ -15,7 +15,7 @@ class Player:
 
         if os.path.isdir(dirpath):
             files: list = os.listdir(dirpath)
-            musics = list(filter(filter_music_files, files))
+            musics = list(map(filter_music_files, files))
 
             return musics
 
