@@ -9,6 +9,7 @@ class Player:
         self.mixer.init()
 
         self.musics = []
+        self.is_paused = False
 
     def find_musics(self, dirpath: str) -> list:
         def filter_music_files(filename: str) -> Union[str, None]:
@@ -42,7 +43,12 @@ class Player:
             self.play(next_music)
 
     def pause(self):
-        self.mixer.music.pause()
+        if self.is_paused:
+            self.unpause()
+            self.is_paused = False
+        else:
+            self.mixer.music.pause()
+            self.is_paused = True
 
     def unpause(self):
         self.mixer.music.unpause()
