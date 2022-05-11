@@ -25,6 +25,14 @@ class Player:
         self.mixer.music.load(filepath)
         self.mixer.music.play()
 
+    def previous_music(self, last_music_index: int):
+        try:
+            next_music = self.musics[last_music_index + 1]
+        except IndexError:
+            return None
+        else:
+            self.play(next_music)
+
     def pause(self):
         self.mixer.music.pause()
 
